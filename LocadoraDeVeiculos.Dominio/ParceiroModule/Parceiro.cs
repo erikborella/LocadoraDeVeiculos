@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
+﻿using LocadoraDeVeiculos.Dominio.CupomModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 
         public string Nome { get; set; }
         public string Telefone { get; set; }
+
+        //public virtual List<Cupom> Cupons { get; set; }
 
         public override bool Equals(object obj)
         {
