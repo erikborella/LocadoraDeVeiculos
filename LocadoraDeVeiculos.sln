@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.OR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Serviços", "5.Serviços", "{D8B15C11-7B81-4082-B493-7F3AA55096FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.WindowsServices", "LocadoraDeVeiculos.WindowsServices\LocadoraDeVeiculos.WindowsServices.csproj", "{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.WindowsServices", "LocadoraDeVeiculos.WindowsServices\LocadoraDeVeiculos.WindowsServices.csproj", "{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.WebApi", "LocadoraDeVeiculos.WebApi\LocadoraDeVeiculos.WebApi.csproj", "{7A6D7318-0D03-448F-8DE4-85B0437173F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +135,10 @@ Global
 		{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A6D7318-0D03-448F-8DE4-85B0437173F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6D7318-0D03-448F-8DE4-85B0437173F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6D7318-0D03-448F-8DE4-85B0437173F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6D7318-0D03-448F-8DE4-85B0437173F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +173,7 @@ Global
 		{B44A3574-DF75-49B9-B88A-A5E52ACE53F0} = {42E27E40-05CA-4979-87FF-99E8FE9B2AD4}
 		{D8B15C11-7B81-4082-B493-7F3AA55096FB} = {C90BC848-DC4F-45A1-9E6D-EBBBC1C6C859}
 		{0F9FCD4F-0901-42E9-84E5-A9A23FC486BC} = {D8B15C11-7B81-4082-B493-7F3AA55096FB}
+		{7A6D7318-0D03-448F-8DE4-85B0437173F8} = {1DF2FAF7-BF5B-455C-B71D-3FCE2CDCAB54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {538C4B65-C2C0-4534-8747-0B006E3B7EF1}

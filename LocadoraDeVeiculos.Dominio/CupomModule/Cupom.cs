@@ -25,12 +25,13 @@ namespace LocadoraDeVeiculos.Dominio.CupomModule
         {
         }
 
-        public string Codigo { get; }
+        public string Codigo { get; set; }
+        public int ParceiroId { get; set; }
         public virtual Parceiro Parceiro { get; set; }
-        public string Tipo { get; }
-        public double Valor { get; }
-        public double ValorMinimo { get; }
-        public DateTime DataVencimento { get; }
+        public string Tipo { get; set; }
+        public double Valor { get; set; }
+        public double ValorMinimo { get; set; }
+        public DateTime DataVencimento { get; set; }
         public int QtdUsos { get; set; }
 
         public override string ToString()
@@ -79,8 +80,8 @@ namespace LocadoraDeVeiculos.Dominio.CupomModule
             if (DataVencimento < DateTime.Today)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "A data de vencimento não pode ser no passado";
 
-            if (Parceiro == null)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Selecione um parceiro";
+            //if (Parceiro == null)
+            //    resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Selecione um parceiro";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

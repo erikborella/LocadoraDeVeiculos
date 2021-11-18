@@ -18,8 +18,13 @@ namespace LocadoraDeVeiculos.Infra.ORM.Configurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Nome)
-                .HasColumnType("VARCHAR(100)")
                 .IsRequired();
+
+            builder.Property(e => e.Telefone)
+                .IsRequired();
+
+            //builder.HasMany(e => e.Cupons)
+            //    .WithOne(e => e.Parceiro);
         }
     }
 }
