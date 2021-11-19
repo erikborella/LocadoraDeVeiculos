@@ -59,6 +59,7 @@ export class FuncionarioListarComponent implements OnInit {
         this.service.excluir(Number(this.idSelecionado))
         .subscribe({
           next: _ => {
+            this.idSelecionado = null;
             this.carregarFuncionarios();
           },
           error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),

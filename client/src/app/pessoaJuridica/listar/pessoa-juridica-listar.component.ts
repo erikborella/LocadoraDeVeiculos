@@ -58,6 +58,7 @@ export class PessoaJuridicaListarComponent implements OnInit {
         this.service.excluir(Number(this.idSelecionado))
         .subscribe({
           next: _ => {
+            this.idSelecionado = null;
             this.carregarPessoasJuridicas();
           },
           error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),

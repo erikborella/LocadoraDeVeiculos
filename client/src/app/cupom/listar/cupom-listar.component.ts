@@ -63,6 +63,7 @@ export class CupomListarComponent implements OnInit {
         this.service.excluir(Number(this.idSelecionado))
         .subscribe({
           next: _ => {
+            this.idSelecionado = null;
             this.carregarCupons();
           },
           error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),
