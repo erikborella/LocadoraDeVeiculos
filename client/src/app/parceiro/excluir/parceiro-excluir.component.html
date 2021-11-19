@@ -1,6 +1,12 @@
 <h1 mat-dialog-title>Tem certeza?</h1>
 <hr>
 <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-flat-button color="primary" (click)="confirmar()">Sim</button>
-    <button mat-flat-button color="warn" (click)="cancelar()">Não</button>
+    <button mat-flat-button color="warn" (click)="confirmar()">
+        <mat-icon>check</mat-icon>
+        Sim
+    </button>
+    <button mat-flat-button color="primary" (click)="cancelar()">
+        <mat-icon>close</mat-icon>
+        Não
+    </button>
 </div>
