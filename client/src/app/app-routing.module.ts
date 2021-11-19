@@ -9,6 +9,9 @@ import { FuncionarioListarComponent } from './funcionario/listar/funcionario-lis
 import { ParceiroCriarComponent } from './parceiro/criar/parceiro-criar.component';
 import { ParceiroEditarComponent } from './parceiro/editar/parceiro-editar.component';
 import { ParceiroListarComponent } from './parceiro/listar/parceiro-listar.component';
+import { PessoaJuridicaCriarComponent } from './pessoaJuridica/criar/pessoa-juridica-criar.component';
+import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-juridica-editar.component';
+import { PessoaJuridicaListarComponent } from './pessoaJuridica/listar/pessoa-juridica-listar.component';
 
 const routes: Routes = [
   {path: 'parceiro/listar', component: ParceiroListarComponent},
@@ -22,6 +25,10 @@ const routes: Routes = [
   {path: 'funcionario/listar', component: FuncionarioListarComponent},
   {path: 'funcionario/criar', component: FuncionarioCriarComponent},
   {path: 'funcionario/editar/:id', component: FuncionarioEditarComponent},
+
+  {path: 'pessoaJuridica/listar', component: PessoaJuridicaListarComponent},
+  {path: 'pessoaJuridica/criar', component: PessoaJuridicaCriarComponent},
+  {path: 'pessoaJuridica/editar/:id', component: PessoaJuridicaEditarComponent},
 ];
 
 @NgModule({

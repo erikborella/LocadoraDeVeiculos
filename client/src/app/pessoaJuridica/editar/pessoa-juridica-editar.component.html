@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Pessoa Juridica</h1>
+</div>
+
+<div *ngIf="carregandoPessoaJuridica; else editarParceiroForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregando dados da Pessoa Juridica...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarParceiroForm>    
+    <form [formGroup]="cadastroForm" (ngSubmit)="editarPessoaJuridica()" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>CNPJ</mat-label>
+            <input matInput [textMask]="{mask: mascaraCNPJ}" formControlName="cnpj">
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput [textMask]="{mask: mascaraTelefone}" formControlName="telefone">
+            <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Endereco</mat-label>
+            <input matInput formControlName="endereco">
+            <mat-icon matSuffix>home</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email">
+            <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+    </form>
+    
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarPessoaJuridica()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>

@@ -40,6 +40,9 @@ import { CupomEditarComponent } from './cupom/editar/cupom-editar.component';
 import { FuncionarioListarComponent } from './funcionario/listar/funcionario-listar.component';
 import { FuncionarioCriarComponent } from './funcionario/criar/funcionario-criar.component';
 import { FuncionarioEditarComponent } from './funcionario/editar/funcionario-editar.component';
+import { PessoaJuridicaListarComponent } from './pessoaJuridica/listar/pessoa-juridica-listar.component';
+import { PessoaJuridicaCriarComponent } from './pessoaJuridica/criar/pessoa-juridica-criar.component';
+import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-juridica-editar.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { FuncionarioEditarComponent } from './funcionario/editar/funcionario-edi
     CupomEditarComponent,
     FuncionarioListarComponent,
     FuncionarioCriarComponent,
-    FuncionarioEditarComponent
+    FuncionarioEditarComponent,
+    PessoaJuridicaListarComponent,
+    PessoaJuridicaCriarComponent,
+    PessoaJuridicaEditarComponent
   ],
   imports: [
     BrowserModule,

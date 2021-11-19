@@ -9,6 +9,18 @@
 
             <mat-divider></mat-divider>
 
+            <mat-list-item [routerLink]="['/pessoaJuridica/listar']">
+                <mat-icon mat-list-icon>corporate_fare</mat-icon>
+                <span>Pessoa Juridica</span>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="['/pessoajuridica/listar']">
+                <mat-icon mat-list-icon>attribution</mat-icon>
+                <span>Pessoa Fisica</span>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
             <mat-list-item [routerLink]="['/parceiro/listar']">
                 <mat-icon mat-list-icon>groups</mat-icon>
                 <span>Parceiro</span>
