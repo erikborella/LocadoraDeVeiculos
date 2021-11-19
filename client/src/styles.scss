@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+  
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+}
+
+.row-is-clicked {
+    font-weight: bold;
+}
+
+mat-form-field  {
+    width: 80%;
+}
+
+.header-icon {
+    padding-left: 15px;
+    transform: scale(2);
+}

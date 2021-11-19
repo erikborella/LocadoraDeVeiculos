@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+  navBarAberta: boolean = true;
+
+  mudarNavBarAberta(estaAberta: boolean) {
+    this.navBarAberta = estaAberta;
+  }
 }

@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Criar Parceiro</h1>
+</div>
+
+<form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
+    <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome">
+        <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput [textMask]="{mask: mascaraTelefone}" formControlName="telefone">
+        <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+</form>
+
+<div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <button mat-flat-button color="primary" (click)="adicionarParceiro()">
+        Registrar
+        <mat-icon>send</mat-icon>
+    </button>
+    <button mat-flat-button color="warn" (click)="voltarParaListar()">
+        <mat-icon>arrow_back</mat-icon>
+        Cancelar
+    </button>
+</div>
+
+<br>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>
