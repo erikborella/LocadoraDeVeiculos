@@ -22,6 +22,7 @@ namespace LocadoraDeVeiculos.WebApi.ViewModels
         public int Id { get; set; }
         public string Codigo { get; set; }
         public string ParceiroNome { get; set; }
+        public string ParceiroId { get; set; }
         public DateTime DataVencimento { get; set; }
         public double Valor { get; set; }
         public double ValorMinimo { get; set; }

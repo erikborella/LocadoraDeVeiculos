@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-parceiro-excluir',
-  templateUrl: './parceiro-excluir.component.html',
-  styleUrls: ['./parceiro-excluir.component.scss']
+  selector: 'app-dialog-excluir',
+  templateUrl: './dialog-excluir.component.html',
+  styleUrls: ['./dialog-excluir.component.scss']
 })
-export class ParceiroExcluirComponent implements OnInit {
+export class DialogExcluirComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<ParceiroExcluirComponent>) { }
+  constructor(private dialogRef: MatDialogRef<DialogExcluirComponent>) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +24,5 @@ export class ParceiroExcluirComponent implements OnInit {
   cancelar() {
     this.dialogRef.close(false);
   }
+
 }

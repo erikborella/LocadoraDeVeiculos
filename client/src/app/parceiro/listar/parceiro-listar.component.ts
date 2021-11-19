@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { DialogExcluirComponent } from 'src/app/shared/dialog-excluir/dialog-excluir.component';
 import { ParceiroListViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroListViewModel';
-import { ParceiroExcluirComponent } from '../excluir/parceiro-excluir.component';
 import { HttpParceiroService } from '../services/http-parceiro.service';
 
 @Component({
@@ -50,7 +50,7 @@ export class ParceiroListarComponent implements OnInit {
   }
 
   abrirDialogExclusao() {
-    const dialogRef = this.dialog.open(ParceiroExcluirComponent, {
+    const dialogRef = this.dialog.open(DialogExcluirComponent, {
       width: '250px'
     });
 

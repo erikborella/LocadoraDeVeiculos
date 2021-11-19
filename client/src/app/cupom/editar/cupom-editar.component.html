@@ -1,0 +1,76 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Cupom</h1>
+</div>
+
+<div *ngIf="carregandoCupom; else editarCupomForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregado dados do Cupom...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarCupomForm>
+    <form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Codigo</mat-label>
+            <input matInput formControlName="codigo">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Data Vencimento</mat-label>
+            <input matInput formControlName="dataVencimento" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" formControlName="valor">
+            <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Valor Minimo</mat-label>
+            <input matInput type="number" formControlName="valorMinimo">
+            <mat-icon matSuffix>price_check</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo Desconto</mat-label>
+            <mat-select formControlName="tipo">
+                <mat-option value="0">
+                    Porcentagem
+                </mat-option>
+                <mat-option value="1">
+                    Reais
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>category</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Parceiro</mat-label>
+            <mat-select formControlName="parceiroId">
+                <mat-option *ngFor="let parceiro of listaParceiros" [value]="parceiro.id">
+                    {{ parceiro.nome }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>groups</mat-icon>
+        </mat-form-field>
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarCupom()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>

@@ -16,11 +16,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 import { HeaderComponent } from './navegacao/header/header.component';
@@ -32,7 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ParceiroEditarComponent } from './parceiro/editar/parceiro-editar.component';
-import { ParceiroExcluirComponent } from './parceiro/excluir/parceiro-excluir.component';
+import { CupomListarComponent } from './cupom/listar/cupom-listar.component';
+import { DialogExcluirComponent } from './shared/dialog-excluir/dialog-excluir.component';
+import { CupomCriarComponent } from './cupom/criar/cupom-criar.component';
+import { CupomEditarComponent } from './cupom/editar/cupom-editar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { ParceiroExcluirComponent } from './parceiro/excluir/parceiro-excluir.co
     ParceiroListarComponent,
     ParceiroCriarComponent,
     ParceiroEditarComponent,
-    ParceiroExcluirComponent
+    CupomListarComponent,
+    DialogExcluirComponent,
+    CupomCriarComponent,
+    CupomEditarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +74,9 @@ import { ParceiroExcluirComponent } from './parceiro/excluir/parceiro-excluir.co
     RouterModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
