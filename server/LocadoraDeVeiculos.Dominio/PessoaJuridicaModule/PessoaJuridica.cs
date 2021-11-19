@@ -22,11 +22,11 @@ namespace LocadoraDeVeiculos.Dominio.PessoaJuridicaModule
         {
         }
 
-        public string Nome { get; }
-        public string Cnpj { get; }
-        public string Telefone { get; }
-        public string Endereco { get; }
-        public string Email { get; }
+        public string Nome { get; set; }
+        public string Cnpj { get; set; }
+        public string Telefone { get; set; }
+        public string Endereco { get; set; }
+        public string Email { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -69,14 +69,6 @@ namespace LocadoraDeVeiculos.Dominio.PessoaJuridicaModule
 
             if (string.IsNullOrEmpty(Endereco))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo 'endereço' não pode estar vazio.";
-
-            if (!string.IsNullOrEmpty(Telefone))
-                if (Telefone.Length != 14 && Telefone.Length != 13)
-                    resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Número de telefone muito pequeno.";
-
-            if (!string.IsNullOrEmpty(Cnpj))
-                if (Cnpj.Length != 18)
-                    resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Número de CNPJ inválido.";
 
             try
             {

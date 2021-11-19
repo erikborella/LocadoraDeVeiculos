@@ -31,15 +31,16 @@ namespace LocadoraDeVeiculos.Dominio.PessoaFisicaModule
 
         }
 
-        public string Nome { get; }
-        public string CPF { get; }
-        public string RG { get; }
-        public string CNH { get; }
-        public DateTime VencimentoCNH { get; }
-        public string Telefone { get; }
-        public string Endereco { get; }
-        public string Email { get; }
-        public virtual PessoaJuridica PessoaJuridica { get; }
+        public string Nome { get; set; }
+        public string CPF { get; set; }
+        public string RG { get; set; }
+        public string CNH { get; set; }
+        public DateTime VencimentoCNH { get; set; }
+        public string Telefone { get; set; }
+        public string Endereco { get; set; }
+        public string Email { get; set; }
+        public int? PessoaJuridicaId { get; set; }
+        public virtual PessoaJuridica PessoaJuridica { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -102,14 +103,10 @@ namespace LocadoraDeVeiculos.Dominio.PessoaFisicaModule
 
             if (string.IsNullOrEmpty(CNH))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo 'CNH' não pode estar vazio.";
-            else if (CNH.Length != 12)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "CNH inválida.";
-
+       
             if (string.IsNullOrEmpty(Telefone))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo 'Telefone' não pode estar vazio.";
-            else if (Telefone.Length != 14 && Telefone.Length != 13)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Número de telefone muito pequeno.";
-
+         
             if (string.IsNullOrEmpty(Endereco))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo 'Endereço' não pode estar vazio.";
 
