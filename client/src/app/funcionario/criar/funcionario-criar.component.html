@@ -1,6 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-    <h1>Criar Parceiro</h1>
+    <h1>Criar Funcionario</h1>
 </div>
+
 
 <form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
     <mat-form-field appearance="outline">
@@ -10,14 +11,20 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Telefone</mat-label>
-        <input matInput [textMask]="{mask: mascaraTelefone}" formControlName="telefone">
-        <mat-icon matSuffix>phone</mat-icon>
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="senha" type="password">
+        <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Salario</mat-label>
+        <input matInput formControlName="salario" type="number">
+        <mat-icon matSuffix>payments</mat-icon>
     </mat-form-field>
 </form>
 
 <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-    <button mat-flat-button color="primary" (click)="adicionarParceiro()" [disabled]="enviando">
+    <button mat-flat-button color="primary" (click)="adicionarFuncionario()" [disabled]="enviando">
         Registrar
         <mat-icon>send</mat-icon>
     </button>

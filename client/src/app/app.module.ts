@@ -37,6 +37,9 @@ import { CupomListarComponent } from './cupom/listar/cupom-listar.component';
 import { DialogExcluirComponent } from './shared/dialog-excluir/dialog-excluir.component';
 import { CupomCriarComponent } from './cupom/criar/cupom-criar.component';
 import { CupomEditarComponent } from './cupom/editar/cupom-editar.component';
+import { FuncionarioListarComponent } from './funcionario/listar/funcionario-listar.component';
+import { FuncionarioCriarComponent } from './funcionario/criar/funcionario-criar.component';
+import { FuncionarioEditarComponent } from './funcionario/editar/funcionario-editar.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { CupomEditarComponent } from './cupom/editar/cupom-editar.component';
     CupomListarComponent,
     DialogExcluirComponent,
     CupomCriarComponent,
-    CupomEditarComponent
+    CupomEditarComponent,
+    FuncionarioListarComponent,
+    FuncionarioCriarComponent,
+    FuncionarioEditarComponent
   ],
   imports: [
     BrowserModule,

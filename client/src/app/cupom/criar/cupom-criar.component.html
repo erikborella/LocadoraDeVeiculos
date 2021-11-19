@@ -62,7 +62,7 @@
 </ng-template>
 
 <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-    <button mat-flat-button color="primary" (click)="adicionarCupom()">
+    <button mat-flat-button color="primary" (click)="adicionarCupom()" [disabled]="enviando">
         Registrar
         <mat-icon>send</mat-icon>
     </button>

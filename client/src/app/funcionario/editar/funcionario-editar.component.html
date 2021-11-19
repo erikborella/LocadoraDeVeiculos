@@ -1,0 +1,40 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Funcionario</h1>
+</div>
+
+<div *ngIf="carregandoFuncionario; else editarFuncionarioForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregado dados do Funcionario...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarFuncionarioForm>    
+    <form [formGroup]="cadastroForm" (ngSubmit)="editarFuncionario()" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Salario</mat-label>
+            <input matInput formControlName="salario" type="number">
+            <mat-icon matSuffix>payments</mat-icon>
+        </mat-form-field>
+    </form>
+    
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarFuncionario()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>
