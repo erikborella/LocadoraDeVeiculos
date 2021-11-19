@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.WebApi.Controllers
 {
-    public class CupomController : BaseController<Cupom, CupomListViewModel, CupomDetailViewModel, CupomCreateViewModel, CupomEditViewModel>
+    public class CupomController : BaseController<Cupom, 
+                                                  CupomListViewModel, 
+                                                  CupomDetailViewModel,     
+                                                  CupomCreateViewModel, 
+                                                  CupomEditViewModel>
     {
         public CupomController(CupomAppService appService, IMapper mapper) 
             : base(appService, mapper)

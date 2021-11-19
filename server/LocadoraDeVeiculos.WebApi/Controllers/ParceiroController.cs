@@ -13,7 +13,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.WebApi.Controllers
 {
-    public class ParceiroController : BaseController<Parceiro, ParceiroListViewModel, ParceiroDetailViewModel, ParceiroCreateViewModel, ParceiroEditViewModel>
+    public class ParceiroController : BaseController<Parceiro, 
+                                                     ParceiroListViewModel, 
+                                                     ParceiroDetailViewModel, 
+                                                     ParceiroCreateViewModel, 
+                                                     ParceiroEditViewModel>
     {
         public ParceiroController(ParceiroAppService appService, IMapper mapper) 
             : base(appService, mapper)

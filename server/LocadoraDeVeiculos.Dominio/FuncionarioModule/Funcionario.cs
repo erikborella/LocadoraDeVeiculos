@@ -21,10 +21,10 @@ namespace LocadoraDeVeiculos.Dominio.FuncionarioModule
         {
         }
 
-        public string Nome { get; }
-        public DateTime DataAdmissao { get; }
-        public double Salario { get; }
-        public string Senha { get; }
+        public string Nome { get; set; }
+        public DateTime DataAdmissao { get; set; }
+        public double Salario { get; set; }
+        public string Senha { get; set; }
 
         public override bool Equals(object obj)
         {
