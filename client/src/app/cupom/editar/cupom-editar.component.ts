@@ -55,14 +55,14 @@ export class CupomEditarComponent implements OnInit {
   carregarCupom() {
     this.servico.obterPorId(this.id)
     .subscribe(cupom => {
-
+      
       this.cadastroForm = new FormGroup({
-        parceiroId: new FormControl(cupom.parceiroId, Validators.required),
         codigo: new FormControl(cupom.codigo, Validators.required),
         dataVencimento: new FormControl(cupom.dataVencimento, Validators.required),
         valor: new FormControl(cupom.valor, Validators.required),
         valorMinimo: new FormControl(cupom.valorMinimo, Validators.required),
         tipo: new FormControl((cupom.tipo === "Porcentagem" ? 0:1), Validators.required),
+        parceiroId: new FormControl(cupom.parceiroId, Validators.required),
       });
 
       this.carregandoCupom = false;

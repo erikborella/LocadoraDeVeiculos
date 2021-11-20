@@ -49,10 +49,10 @@
         <mat-form-field appearance="outline">
             <mat-label>Tipo Desconto</mat-label>
             <mat-select formControlName="tipo">
-                <mat-option value="0">
+                <mat-option [value]="0">
                     Porcentagem
                 </mat-option>
-                <mat-option value="1">
+                <mat-option [value]="1">
                     Reais
                 </mat-option>
             </mat-select>
