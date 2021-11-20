@@ -2,7 +2,7 @@
     <mat-sidenav #sidenav mode="side" [opened]="estaAberta" (openedChange)="navBarMudada($event)">
         <mat-nav-list>
 
-            <mat-list-item>
+            <mat-list-item [routerLink]="['/']">
                 <mat-icon mat-list-icon>home</mat-icon>
                 <span>Home</span>
             </mat-list-item>
@@ -14,7 +14,7 @@
                 <span>Pessoa Juridica</span>
             </mat-list-item>
 
-            <mat-list-item [routerLink]="['/pessoajuridica/listar']">
+            <mat-list-item [routerLink]="['/pessoaFisica/listar']">
                 <mat-icon mat-list-icon>attribution</mat-icon>
                 <span>Pessoa Fisica</span>
             </mat-list-item>

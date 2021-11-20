@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +44,14 @@ import { FuncionarioEditarComponent } from './funcionario/editar/funcionario-edi
 import { PessoaJuridicaListarComponent } from './pessoaJuridica/listar/pessoa-juridica-listar.component';
 import { PessoaJuridicaCriarComponent } from './pessoaJuridica/criar/pessoa-juridica-criar.component';
 import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-juridica-editar.component';
+import { PessoaFisicaListarComponent } from './pessoaFisica/listar/pessoa-fisica-listar.component';
+import { PessoaFisicaCriarComponent } from './pessoaFisica/criar/pessoa-fisica-criar.component';
+
+import ptBr from "@angular/common/locales/pt"
+import { registerLocaleData } from "@angular/common";
+import { PessoaFisicaEditarComponent } from './pessoaFisica/editar/pessoa-fisica-editar.component'
+
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -62,7 +70,10 @@ import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-ju
     FuncionarioEditarComponent,
     PessoaJuridicaListarComponent,
     PessoaJuridicaCriarComponent,
-    PessoaJuridicaEditarComponent
+    PessoaJuridicaEditarComponent,
+    PessoaFisicaListarComponent,
+    PessoaFisicaCriarComponent,
+    PessoaFisicaEditarComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +103,9 @@ import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-ju
     MatDatepickerModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

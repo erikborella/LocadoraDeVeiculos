@@ -1,0 +1,116 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Pessoa Fisica</h1>
+</div>
+
+<div *ngIf="carregandoPessoaFisica; else editarPessoaFisicaForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregando dados da Pessoa Fisica...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarPessoaFisicaForm>
+    <form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+                Campo Nome é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input [textMask]="{mask: mascaraCPF}" matInput formControlName="cpf">
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['cpf'].errors">
+                Campo CPF é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>RG</mat-label>
+            <input matInput formControlName="rg">
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['rg'].errors">
+                Campo RG é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CNH</mat-label>
+            <input matInput formControlName="cnh">
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['cnh'].errors">
+                Campo CNH é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Vencimento CNH</mat-label>
+            <input matInput formControlName="vencimentoCNH" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="cadastroForm.controls['vencimentoCNH'].errors">
+                Campo Vencimento CNH é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input [textMask]="{mask: mascaraTelefone}" matInput formControlName="telefone">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['telefone'].errors">
+                Campo Telefone é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['email'].errors">
+                Campo Email é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Endereco</mat-label>
+            <input matInput formControlName="endereco">
+            <mat-icon matSuffix>home</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['endereco'].errors">
+                Campo Endereco é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Pessoa Juridica</mat-label>
+            <mat-select formControlName="pessoaJuridicaId">
+                <mat-option [value]="null">
+                    Sem Pessoa Juridica
+                </mat-option>
+                <mat-option *ngFor="let pessoaJuridica of listaPessoasJuridicas" [value]="pessoaJuridica.id">
+                    {{ pessoaJuridica.nome }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>corporate_fare</mat-icon>
+        </mat-form-field>
+
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarPessoaFisica()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>
