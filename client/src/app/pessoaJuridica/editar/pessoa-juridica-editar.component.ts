@@ -70,9 +70,9 @@ export class PessoaJuridicaEditarComponent implements OnInit {
         endereco: new FormControl(pessoaJuridica.endereco, Validators.required),
         email: new FormControl(pessoaJuridica.email, Validators.compose([Validators.email, Validators.required])),
       });
+      
+      this.carregandoPessoaJuridica = false;
     });
-
-    this.carregandoPessoaJuridica = false;
   }
 
   voltarParaListar() {

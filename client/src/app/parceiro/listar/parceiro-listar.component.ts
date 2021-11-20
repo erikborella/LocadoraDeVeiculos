@@ -66,7 +66,7 @@ export class ParceiroListarComponent implements OnInit {
           this.carregarParceiros();
         },
         error => {
-          this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
+          this.toast.erro({error: "Erro ao deletar, verifique as suas dependencias!"});
         });
       }
 

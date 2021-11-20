@@ -61,7 +61,7 @@ export class PessoaJuridicaListarComponent implements OnInit {
       this.carregarPessoasJuridicas();
     },
     error => {
-      this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
+      this.toast.erro({error: "Erro ao deletar, verifique as suas dependencias!"});
     });
     
   }

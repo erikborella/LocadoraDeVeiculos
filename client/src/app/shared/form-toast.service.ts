@@ -14,7 +14,7 @@ export class FormToastService {
     })
   }
 
-  erro(error: any) {
+  erro(error: any) {    
     if (typeof(error.error) === "string") {
       this._snackBar.open(error.error, "Fechar", {
         duration: 5000,

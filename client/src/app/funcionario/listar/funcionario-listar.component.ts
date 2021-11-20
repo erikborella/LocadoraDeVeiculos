@@ -65,7 +65,7 @@ export class FuncionarioListarComponent implements OnInit {
           this.carregarFuncionarios();
         },
         error => {
-          this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
+          this.toast.erro({error: "Erro ao deletar, verifique as suas dependencias!"});
         });
       }
 
