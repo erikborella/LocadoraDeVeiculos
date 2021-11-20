@@ -13,12 +13,18 @@
             <mat-label>Nome</mat-label>
             <input matInput formControlName="nome">
             <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+                Campo Nome é obrigatorio
+            </mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="outline">
             <mat-label>Telefone</mat-label>
             <input matInput [textMask]="{mask: mascaraTelefone}" formControlName="telefone">
             <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['telefone'].errors">
+                Campo Telefone é obrigatorio
+            </mat-error>
         </mat-form-field>
     </form>
     

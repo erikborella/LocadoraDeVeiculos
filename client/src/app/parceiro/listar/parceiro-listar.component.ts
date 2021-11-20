@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { DialogExcluirComponent } from 'src/app/shared/dialog-excluir/dialog-excluir.component';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { ParceiroListViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroListViewModel';
 import { HttpParceiroService } from '../services/http-parceiro.service';
 
@@ -27,7 +28,8 @@ export class ParceiroListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: HttpParceiroService, 
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private toast: FormToastService) { }
   
   ngOnInit(): void {
     this.carregarParceiros(); 
@@ -58,13 +60,13 @@ export class ParceiroListarComponent implements OnInit {
     .subscribe(podeExcluir => {
       if (podeExcluir) {
         this.service.excluir(Number(this.idSelecionado))
-        .subscribe({
-          next: _ => {
-            this.idSelecionado = null;
-            this.carregarParceiros();
-          },
-          error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),
-          complete: () => null
+        .subscribe(_ => {
+          this.toast.info("Parceiro excluido com sucesso");
+          this.idSelecionado = null;
+          this.carregarParceiros();
+        },
+        error => {
+          this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
         });
       }
 

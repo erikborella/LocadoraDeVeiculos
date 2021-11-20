@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogExcluirComponent } from 'src/app/shared/dialog-excluir/dialog-excluir.component';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { PessoaJuridicaListViewModel } from 'src/app/shared/viewModels/pessoaJuridica/PessoaJuridicaListViewModel';
 import { HttpPessoaJuridicaService } from '../services/http-pessoa-juridica.service';
 
@@ -25,7 +26,8 @@ export class PessoaJuridicaListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: HttpPessoaJuridicaService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.carregarPessoasJuridicas();
@@ -53,19 +55,14 @@ export class PessoaJuridicaListarComponent implements OnInit {
     });
 
     dialogRef.afterClosed()
-    .subscribe(podeExcluir => {
-      if (podeExcluir) {
-        this.service.excluir(Number(this.idSelecionado))
-        .subscribe({
-          next: _ => {
-            this.idSelecionado = null;
-            this.carregarPessoasJuridicas();
-          },
-          error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),
-          complete: () => null
-        });
-      }
-
+    .subscribe(_ => {
+      this.toast.info("Pessoa Juridica excluido com sucesso");
+      this.idSelecionado = null;
+      this.carregarPessoasJuridicas();
+    },
+    error => {
+      this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
     });
+    
   }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
+import { MascarasInput } from 'src/app/shared/mascarasInput';
 import { PessoaJuridicaCreateViewModel } from 'src/app/shared/viewModels/pessoaJuridica/PessoaJuridicaCreateViewModel';
 import { HttpPessoaJuridicaService } from '../services/http-pessoa-juridica.service';
 
@@ -15,18 +18,20 @@ export class PessoaJuridicaCriarComponent implements OnInit {
 
   enviando = false;
 
-  mascaraCNPJ = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  mascaraTelefone = ['(', /[1-9]/, /[1-9]/, ')', ' ', '9', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  mascaraCNPJ = MascarasInput.mascaraCNPJ;
+  mascaraTelefone = MascarasInput.mascaraTelefone;
 
-  constructor(private servico: HttpPessoaJuridicaService, private router: Router) { }
+  constructor(private servico: HttpPessoaJuridicaService, 
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.cadastroForm = new FormGroup({
-      nome: new FormControl(''),
-      cnpj: new FormControl(''),
-      telefone: new FormControl(''),
-      endereco: new FormControl(''),
-      email: new FormControl(''),
+      nome: new FormControl('', Validators.required),
+      cnpj: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required),
+      endereco: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.email, Validators.required]) ),
     });
   }
 
@@ -36,7 +41,12 @@ export class PessoaJuridicaCriarComponent implements OnInit {
 
     this.servico.adicionar(this.pessoaJuridica)
     .subscribe(_ => {
+      this.toast.info("Pessoa Juridica criado com sucesso");
       this.voltarParaListar();
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
     })
   }
 

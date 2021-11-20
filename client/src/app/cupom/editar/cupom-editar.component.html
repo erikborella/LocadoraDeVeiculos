@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="carregandoCupom; else editarCupomForm" fxLayout="row" fxLayoutAlign="center center" >
-    <h1>Carregado dados do Cupom...</h1>
+    <h1>Carregando dados do Cupom...</h1>
     <mat-spinner></mat-spinner>
 </div>
 
@@ -13,6 +13,9 @@
             <mat-label>Codigo</mat-label>
             <input matInput formControlName="codigo">
             <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['codigo'].errors">
+                Campo Codigo é obrigatorio
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -20,18 +23,27 @@
             <input matInput formControlName="dataVencimento" [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="cadastroForm.controls['dataVencimento'].errors">
+                Campo Data Vencimento é obrigatorio
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Valor</mat-label>
             <input matInput type="number" formControlName="valor">
             <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['valor'].errors">
+                Campo Valor é obrigatorio
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Valor Minimo</mat-label>
             <input matInput type="number" formControlName="valorMinimo">
             <mat-icon matSuffix>price_check</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['valorMinimo'].errors">
+                Campo Valor Minimo é obrigatorio
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -45,6 +57,9 @@
                 </mat-option>
             </mat-select>
             <mat-icon matSuffix>category</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['tipo'].errors">
+                Campo Tipo é obrigatorio
+            </mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="outline">
@@ -55,6 +70,9 @@
                 </mat-option>
             </mat-select>
             <mat-icon matSuffix>groups</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['parceiroId'].errors">
+                Campo Parceiro é obrigatorio
+            </mat-error>
         </mat-form-field>
     </form>
 

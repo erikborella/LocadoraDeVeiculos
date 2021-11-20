@@ -53,7 +53,10 @@ namespace LocadoraDeVeiculos.WebApi.Controllers.Shared
         {
             var entidade = mapper.Map<TEntity>(entidadeVM);
 
-            appService.InserirNovo(entidade);
+            string status = appService.InserirNovo(entidade);
+
+            if (status != "ESTA_VALIDO")
+                return BadRequest(status);
 
             return CreatedAtAction(nameof(Get), new { id = entidade.id }, entidadeVM);
         }
@@ -68,7 +71,10 @@ namespace LocadoraDeVeiculos.WebApi.Controllers.Shared
 
             entidadeSelecionada = mapper.Map(entidadeVM, entidadeSelecionada);
 
-            appService.Editar(id, entidadeSelecionada);
+            string status = appService.Editar(id, entidadeSelecionada);
+
+            if (status != "ESTA_VALIDO")
+                return BadRequest(status);
 
             return Ok(entidadeVM);
         }

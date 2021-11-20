@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogExcluirComponent } from 'src/app/shared/dialog-excluir/dialog-excluir.component';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { FuncionarioListViewModel } from 'src/app/shared/viewModels/funcionario/FuncionarioListViewModel';
 import { ParceiroListViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroListViewModel';
 import { HttpFuncionarioService } from '../services/http-funcionario.service';
@@ -26,7 +27,8 @@ export class FuncionarioListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: HttpFuncionarioService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.carregarFuncionarios();
@@ -57,13 +59,13 @@ export class FuncionarioListarComponent implements OnInit {
     .subscribe(podeExcluir => {
       if (podeExcluir) {
         this.service.excluir(Number(this.idSelecionado))
-        .subscribe({
-          next: _ => {
-            this.idSelecionado = null;
-            this.carregarFuncionarios();
-          },
-          error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),
-          complete: () => null
+        .subscribe(_ => {
+          this.toast.info("Funcionario excluido com sucesso");
+          this.idSelecionado = null;
+          this.carregarFuncionarios();
+        },
+        error => {
+          this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
         });
       }
 

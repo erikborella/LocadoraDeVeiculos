@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { ParceiroCreateViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroCreateViewModel';
 import { HttpParceiroService } from '../services/http-parceiro.service';
+import { MascarasInput } from "../../shared/mascarasInput"
 
 @Component({
   selector: 'app-parceiro-criar',
@@ -13,16 +16,18 @@ export class ParceiroCriarComponent implements OnInit {
   cadastroForm: FormGroup;
   parceiro: ParceiroCreateViewModel
 
-  mascaraTelefone = ['(', /[1-9]/, /[1-9]/, ')', ' ', '9', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  mascaraTelefone = MascarasInput.mascaraTelefone;
 
   enviando: boolean = false;
 
-  constructor(private servico: HttpParceiroService, private router: Router) { }
+  constructor(private servico: HttpParceiroService, 
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.cadastroForm = new FormGroup({
-      nome: new FormControl(''),
-      telefone: new FormControl('')
+      nome: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required)
     });
   }
 
@@ -32,8 +37,13 @@ export class ParceiroCriarComponent implements OnInit {
     
     this.servico.adicionar(this.parceiro)
     .subscribe(_ => {
+      this.toast.info("Parceiro criado com sucesso");
       this.voltarParaListar();
-    })
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
+    });
   }
 
   voltarParaListar() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
+import { MascarasInput } from 'src/app/shared/mascarasInput';
 import { PessoaJuridicaEditViewModel } from 'src/app/shared/viewModels/pessoaJuridica/PessoaJuridicaEditViewModel';
 import { HttpPessoaJuridicaService } from '../services/http-pessoa-juridica.service';
 
@@ -18,12 +20,13 @@ export class PessoaJuridicaEditarComponent implements OnInit {
   carregandoPessoaJuridica = true;
   enviando = false;
 
-  mascaraCNPJ = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  mascaraTelefone = ['(', /[1-9]/, /[1-9]/, ')', ' ', '9', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
+  mascaraCNPJ = MascarasInput.mascaraCNPJ;
+  mascaraTelefone = MascarasInput.mascaraTelefone;
+  
   constructor(private _ActivatedRoute: ActivatedRoute,
               private servico: HttpPessoaJuridicaService,
-              private router: Router) { }
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.id = Number(this._ActivatedRoute.snapshot.paramMap.get("id"));
@@ -47,7 +50,12 @@ export class PessoaJuridicaEditarComponent implements OnInit {
 
     this.servico.editar(this.id, pessoaJuridica)
     .subscribe(_ => {
+      this.toast.info("Pessoa Juridica editado com sucesso");
       this.voltarParaListar();
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
     })
   }
 
@@ -56,11 +64,11 @@ export class PessoaJuridicaEditarComponent implements OnInit {
 
     .subscribe(pessoaJuridica => {
       this.cadastroForm = new FormGroup({
-        nome: new FormControl(pessoaJuridica.nome),
-        cnpj: new FormControl(pessoaJuridica.cnpj),
-        telefone: new FormControl(pessoaJuridica.telefone),
-        endereco: new FormControl(pessoaJuridica.endereco),
-        email: new FormControl(pessoaJuridica.email),
+        nome: new FormControl(pessoaJuridica.nome, Validators.required),
+        cnpj: new FormControl(pessoaJuridica.cnpj, Validators.required),
+        telefone: new FormControl(pessoaJuridica.telefone, Validators.required),
+        endereco: new FormControl(pessoaJuridica.endereco, Validators.required),
+        email: new FormControl(pessoaJuridica.email, Validators.compose([Validators.email, Validators.required])),
       });
     });
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
+import { MascarasInput } from 'src/app/shared/mascarasInput';
 import { ParceiroEditViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroEditViewModel';
 import { HttpParceiroService } from '../services/http-parceiro.service';
 
@@ -18,11 +20,12 @@ export class ParceiroEditarComponent implements OnInit {
   carregandoParceiro = true;
   enviando = false;
   
-  mascaraTelefone = ['(', /[1-9]/, /[1-9]/, ')', ' ', '9', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  mascaraTelefone = MascarasInput.mascaraTelefone;
 
   constructor(private _ActivatedRoute: ActivatedRoute,
               private servico: HttpParceiroService,
-              private router: Router) { }
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.id = Number(this._ActivatedRoute.snapshot.paramMap.get("id"));
@@ -43,8 +46,13 @@ export class ParceiroEditarComponent implements OnInit {
 
     this.servico.editar(this.id, parceiro)
     .subscribe(_ => {
+      this.toast.info("Parceiro editado com sucesso");
       this.voltarParaListar();
-    })
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
+    });
     
   }
 
@@ -53,8 +61,8 @@ export class ParceiroEditarComponent implements OnInit {
     .subscribe(parceiro => {
 
       this.cadastroForm = new FormGroup({
-        nome: new FormControl(parceiro.nome),
-        telefone: new FormControl(parceiro.telefone)
+        nome: new FormControl(parceiro.nome, Validators.required),
+        telefone: new FormControl(parceiro.telefone, Validators.required)
       });
 
       this.carregandoParceiro = false;

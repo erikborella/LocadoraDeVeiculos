@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { HttpCupomService } from '../services/http-cupom.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExcluirComponent } from 'src/app/shared/dialog-excluir/dialog-excluir.component';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 
 @Component({
   selector: 'app-cupom-listar',
@@ -26,7 +27,8 @@ export class CupomListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: HttpCupomService, 
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.carregarCupons();
@@ -61,13 +63,13 @@ export class CupomListarComponent implements OnInit {
     .subscribe(podeExcluir => {
       if (podeExcluir) {
         this.service.excluir(Number(this.idSelecionado))
-        .subscribe({
-          next: _ => {
-            this.idSelecionado = null;
-            this.carregarCupons();
-          },
-          error: _ => alert("Erro ao deletar, verifique as suas dependencias!"),
-          complete: () => null
+        .subscribe(_ => {
+          this.toast.info("Cupom excluido com sucesso");
+          this.idSelecionado = null;
+          this.carregarCupons();
+        },
+        error => {
+          this.toast.erro("Erro ao deletar, verifique as suas dependencias!");
         });
       }
 

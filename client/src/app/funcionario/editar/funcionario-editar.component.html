@@ -13,12 +13,18 @@
             <mat-label>Nome</mat-label>
             <input matInput formControlName="nome">
             <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+                Campo Nome é obrigatorio
+            </mat-error>
         </mat-form-field>
-        
+    
         <mat-form-field appearance="outline">
             <mat-label>Salario</mat-label>
             <input matInput formControlName="salario" type="number">
             <mat-icon matSuffix>payments</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['salario'].errors">
+                Campo Salario é obrigatorio
+            </mat-error>
         </mat-form-field>
     </form>
     

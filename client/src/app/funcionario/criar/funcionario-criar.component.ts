@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { FuncionarioCreateViewModel } from 'src/app/shared/viewModels/funcionario/FuncionarioCreateViewModel';
 import { HttpFuncionarioService } from '../services/http-funcionario.service';
 
@@ -15,13 +17,15 @@ export class FuncionarioCriarComponent implements OnInit {
 
   enviando = false;
 
-  constructor(private servico: HttpFuncionarioService, private router: Router) { }
+  constructor(private servico: HttpFuncionarioService, 
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.cadastroForm = new FormGroup({
-      nome: new FormControl(''),
-      salario: new FormControl(''),
-      senha: new FormControl('')
+      nome: new FormControl('', Validators.required),
+      salario: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required)
     });
   }
 
@@ -31,8 +35,13 @@ export class FuncionarioCriarComponent implements OnInit {
     
     this.servico.adicionar(this.funcionario)
     .subscribe(_ => {
+      this.toast.info("Funcionario criado com sucesso");
       this.voltarParaListar();
-    })
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
+    });
   }
 
   voltarParaListar() {

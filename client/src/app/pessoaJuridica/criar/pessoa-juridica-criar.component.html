@@ -8,30 +8,45 @@
         <mat-label>Nome</mat-label>
         <input matInput formControlName="nome">
         <mat-icon matSuffix>badge</mat-icon>
+        <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+            Campo Nome é obrigatorio
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>CNPJ</mat-label>
         <input matInput [textMask]="{mask: mascaraCNPJ}" formControlName="cnpj">
         <mat-icon matSuffix>assignment_ind</mat-icon>
+        <mat-error *ngIf="cadastroForm.controls['cnpj'].errors">
+            Campo CNPJ é obrigatorio
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Telefone</mat-label>
         <input matInput [textMask]="{mask: mascaraTelefone}" formControlName="telefone">
         <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="cadastroForm.controls['telefone'].errors">
+            Campo Telefone é obrigatorio
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Endereco</mat-label>
         <input matInput formControlName="endereco">
         <mat-icon matSuffix>home</mat-icon>
+        <mat-error *ngIf="cadastroForm.controls['endereco'].errors">
+            Campo Endereco é obrigatorio
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email">
+        <input required matInput formControlName="email" type="email">
         <mat-icon matSuffix>alternate_email</mat-icon>
+        <mat-error *ngIf="cadastroForm.controls['email'].errors">
+            Digite um email valido
+        </mat-error>
     </mat-form-field>
 
 

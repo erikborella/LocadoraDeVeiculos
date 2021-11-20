@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { FuncionarioEditViewModel } from 'src/app/shared/viewModels/funcionario/FuncionarioEditViewModel';
 import { HttpFuncionarioService } from '../services/http-funcionario.service';
 
@@ -19,8 +20,9 @@ export class FuncionarioEditarComponent implements OnInit {
   enviando = false;
 
   constructor(private _ActivatedRoute: ActivatedRoute,
-    private servico: HttpFuncionarioService,
-    private router: Router) { }
+              private servico: HttpFuncionarioService,
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.id = Number(this._ActivatedRoute.snapshot.paramMap.get("id"));
@@ -41,7 +43,12 @@ export class FuncionarioEditarComponent implements OnInit {
 
     this.servico.editar(this.id, funcionario)
     .subscribe(_ => {
+      this.toast.info("Funcionario editado com sucesso");
       this.voltarParaListar();
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
     })
   }
 
@@ -50,8 +57,8 @@ export class FuncionarioEditarComponent implements OnInit {
     .subscribe(funcionario => {
 
       this.cadastroForm = new FormGroup({
-        nome: new FormControl(funcionario.nome),
-        salario: new FormControl(funcionario.salario)
+        nome: new FormControl(funcionario.nome, Validators.required),
+        salario: new FormControl(funcionario.salario, Validators.required)
       });
 
       this.carregandoFuncionario = false;

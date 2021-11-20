@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpParceiroService } from 'src/app/parceiro/services/http-parceiro.service';
+import { FormToastService } from 'src/app/shared/form-toast.service';
 import { CupomEditViewModel } from 'src/app/shared/viewModels/cupom/CupomEditViewModel';
 import { ParceiroListViewModel } from 'src/app/shared/viewModels/parceiro/ParceiroListViewModel';
 import { HttpCupomService } from '../services/http-cupom.service';
@@ -24,7 +25,8 @@ export class CupomEditarComponent implements OnInit {
   constructor(private _ActivatedRoute: ActivatedRoute,
               private servico: HttpCupomService, 
               private servicoParceiro: HttpParceiroService,
-              private router: Router) { }
+              private router: Router,
+              private toast: FormToastService) { }
 
   ngOnInit(): void {
     this.id = Number(this._ActivatedRoute.snapshot.paramMap.get("id"));
@@ -55,12 +57,12 @@ export class CupomEditarComponent implements OnInit {
     .subscribe(cupom => {
 
       this.cadastroForm = new FormGroup({
-        parceiroId: new FormControl(cupom.parceiroId),
-        codigo: new FormControl(cupom.codigo),
-        dataVencimento: new FormControl(cupom.dataVencimento),
-        valor: new FormControl(cupom.valor),
-        valorMinimo: new FormControl(cupom.valorMinimo),
-        tipo: new FormControl((cupom.tipo === "Porcentagem" ? 0:1)),
+        parceiroId: new FormControl(cupom.parceiroId, Validators.required),
+        codigo: new FormControl(cupom.codigo, Validators.required),
+        dataVencimento: new FormControl(cupom.dataVencimento, Validators.required),
+        valor: new FormControl(cupom.valor, Validators.required),
+        valorMinimo: new FormControl(cupom.valorMinimo, Validators.required),
+        tipo: new FormControl((cupom.tipo === "Porcentagem" ? 0:1), Validators.required),
       });
 
       this.carregandoCupom = false;
@@ -75,7 +77,12 @@ export class CupomEditarComponent implements OnInit {
 
     this.servico.editar(this.id, cupom)
     .subscribe(_ => {
+      this.toast.info("Cupom editado com sucesso");
       this.voltarParaListar();
+    },
+    error => {
+      this.toast.erro(error);
+      this.enviando = false;
     })
   }
 

@@ -58,6 +58,9 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
             if (string.IsNullOrEmpty(Nome))
                 resultadoValidacao = "O campo 'nome' não pode estar vazio.";
 
+            if (Nome == "AA")
+                resultadoValidacao = "Erro de teste só";
+
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
 
