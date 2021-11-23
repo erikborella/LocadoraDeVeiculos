@@ -12,11 +12,11 @@ namespace LocadoraDeVeiculos.Dominio.GrupoAutomovelModule
 
         public string Nome { get; }
 
-        public PlanoDiarioStruct PlanoDiario { get; }
+        public PlanoDiarioStruct PlanoDiario { get; set; }
 
-        public PlanoKmControladoStruct PlanoKmControlado { get; }
+        public PlanoKmControladoStruct PlanoKmControlado { get; set; }
 
-        public PlanoKmLivreStruct PlanoKmLivre { get; }
+        public PlanoKmLivreStruct PlanoKmLivre { get; set; }
 
         public GrupoAutomovel(string nome, PlanoDiarioStruct planoDiario,
             PlanoKmControladoStruct planoKmControlado, PlanoKmLivreStruct planoKmLivre)

@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.Dominio.GrupoAutomovelModule
 {
     public struct PlanoKmLivreStruct
     {
-        public double PrecoDia { get; }
+        public double PrecoDia { get; set; }
 
         public PlanoKmLivreStruct(double precoDia)
         {
