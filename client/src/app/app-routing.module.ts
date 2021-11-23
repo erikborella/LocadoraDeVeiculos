@@ -15,6 +15,9 @@ import { PessoaFisicaListarComponent } from './pessoaFisica/listar/pessoa-fisica
 import { PessoaJuridicaCriarComponent } from './pessoaJuridica/criar/pessoa-juridica-criar.component';
 import { PessoaJuridicaEditarComponent } from './pessoaJuridica/editar/pessoa-juridica-editar.component';
 import { PessoaJuridicaListarComponent } from './pessoaJuridica/listar/pessoa-juridica-listar.component';
+import { TaxaEServicoCriarComponent } from './taxaEServico/criar/taxa-e-servico-criar.component';
+import { TaxaEServicoEditarComponent } from './taxaEServico/editar/taxa-e-servico-editar.component';
+import { TaxaEServicoListarComponent } from './taxaEServico/listar/taxa-e-servico-listar.component';
 
 const routes: Routes = [
   {path: 'parceiro/listar', component: ParceiroListarComponent},
@@ -36,6 +39,10 @@ const routes: Routes = [
   {path: 'pessoaFisica/listar', component: PessoaFisicaListarComponent},
   {path: 'pessoaFisica/criar', component: PessoaFisicaCriarComponent},
   {path: 'pessoaFisica/editar/:id', component: PessoaFisicaEditarComponent},
+
+  {path: 'taxaEServico/listar', component: TaxaEServicoListarComponent},
+  {path: 'taxaEServico/criar', component: TaxaEServicoCriarComponent},
+  {path: 'taxaEServico/editar/:id', component: TaxaEServicoEditarComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Taxa E Servico</h1>
+</div>
+
+<div *ngIf="carregandoTaxaEServico; else editarTaxaEServicoForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregando dados da Taxa E Servico...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarTaxaEServicoForm>    
+    <form [formGroup]="cadastroForm" (ngSubmit)="editarTaxaEServico()" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+                Campo Nome é obrigatorio
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Preco</mat-label>
+            <input matInput formControlName="preco" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['preco'].errors">
+                Campo Preco é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    
+        <span id="criar-taxa-ehFixo-label">Selecione o tipo da Taxa:</span>
+    
+        <mat-radio-group aria-labelledby="criar-taxa-ehFixo-label" formControlName="ehFixo">
+            <mat-radio-button [value]="true">Valor Fixo</mat-radio-button>
+            <mat-radio-button [value]="false">Valor Por Dia</mat-radio-button>
+        </mat-radio-group>
+    </form>
+    
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarTaxaEServico()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>

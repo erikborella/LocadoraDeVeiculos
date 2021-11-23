@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 import { HeaderComponent } from './navegacao/header/header.component';
@@ -49,7 +50,11 @@ import { PessoaFisicaCriarComponent } from './pessoaFisica/criar/pessoa-fisica-c
 
 import ptBr from "@angular/common/locales/pt"
 import { registerLocaleData } from "@angular/common";
-import { PessoaFisicaEditarComponent } from './pessoaFisica/editar/pessoa-fisica-editar.component'
+import { PessoaFisicaEditarComponent } from './pessoaFisica/editar/pessoa-fisica-editar.component';
+import { TaxaEServicoListarComponent } from './taxaEServico/listar/taxa-e-servico-listar.component';
+import { PegarTipoTaxaPipe } from './taxaEServico/pipes/pegar-tipo.pipe';
+import { TaxaEServicoCriarComponent } from './taxaEServico/criar/taxa-e-servico-criar.component';
+import { TaxaEServicoEditarComponent } from './taxaEServico/editar/taxa-e-servico-editar.component'
 
 registerLocaleData(ptBr);
 
@@ -73,7 +78,11 @@ registerLocaleData(ptBr);
     PessoaJuridicaEditarComponent,
     PessoaFisicaListarComponent,
     PessoaFisicaCriarComponent,
-    PessoaFisicaEditarComponent
+    PessoaFisicaEditarComponent,
+    TaxaEServicoListarComponent,
+    PegarTipoTaxaPipe,
+    TaxaEServicoCriarComponent,
+    TaxaEServicoEditarComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +110,8 @@ registerLocaleData(ptBr);
     MatDialogModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'}
