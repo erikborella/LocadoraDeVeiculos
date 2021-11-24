@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeículos.Aplicacao.Shared;
+﻿using FluentValidation;
+using LocadoraDeVeículos.Aplicacao.Shared;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Infra.Log;
@@ -16,10 +17,17 @@ namespace LocadoraDeVeículos.Aplicacao.ParceiroModule
     {
         private IRepositorBase<Parceiro> repositorio;
         private DBLocadoraContext db;
+
+        private INotificador notificador;
+        private AbstractValidator<Parceiro> validator;
         public ParceiroAppService(IRepositorBase<Parceiro> repositor,
+                                  INotificador notificador,
+                                  AbstractValidator<Parceiro> validator,
                                   DBLocadoraContext db)
         {
             repositorio = repositor;
+            this.notificador = notificador;
+            this.validator = validator;
             this.db = db;
         }
 
@@ -28,13 +36,22 @@ namespace LocadoraDeVeículos.Aplicacao.ParceiroModule
             string resultadoValidacao = registro.Validar();
             Serilog.Log.Logger.Aqui().Information($"Validando parceiro [{registro.Nome}], Resultado: {resultadoValidacao}");
 
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                repositorio.InserirNovo(registro);
-                db.SaveChanges();
-            }
+            var resultado = validator.Validate(registro);
 
-            return resultadoValidacao;
+            if (resultado.IsValid == false)
+            {
+                foreach (var erro in resultado.Errors)
+                {
+                    notificador.RegistrarNotificacao(erro.ErrorMessage);
+                }
+
+                return "NAO_VALIDO";
+            }   
+
+            repositorio.InserirNovo(registro);
+            db.SaveChanges();
+
+            return "ESTA_VALIDO";
         }
 
         public string Editar(int id, Parceiro registro)
