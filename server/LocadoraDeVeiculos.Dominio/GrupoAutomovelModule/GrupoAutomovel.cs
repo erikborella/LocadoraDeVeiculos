@@ -10,7 +10,7 @@ namespace LocadoraDeVeiculos.Dominio.GrupoAutomovelModule
     public class GrupoAutomovel : EntidadeBase, IEquatable<GrupoAutomovel>
     {
 
-        public string Nome { get; }
+        public string Nome { get; set; }
 
         public PlanoDiarioStruct PlanoDiario { get; set; }
 
