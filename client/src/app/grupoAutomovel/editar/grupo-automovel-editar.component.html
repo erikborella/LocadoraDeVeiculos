@@ -1,0 +1,108 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Editar Funcionario</h1>
+</div>
+
+<div *ngIf="carregandoGrupoAutomovel; else editarFuncionarioForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregado dados do Funcionario...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editarFuncionarioForm>
+
+    <form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['nome'].errors">
+                Campo Nome é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    </form>
+    
+    <span>Plano Diario</span>
+    <hr>
+    
+    <form [formGroup]="planoDiarioForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Preco por Dia</mat-label>
+            <input matInput formControlName="precoDia" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="planoDiarioForm.controls['precoDia'].errors">
+                Campo Preco por Dia é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Preco por Km</mat-label>
+            <input matInput formControlName="precoKm" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="planoDiarioForm.controls['precoKm'].errors">
+                Campo Preco por Km é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    </form>
+    
+    <span>Plano Km Controlado</span>
+    <hr>
+    
+    <form [formGroup]="planoKmControladoForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Preco por Dia</mat-label>
+            <input matInput formControlName="precoDia" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="planoKmControladoForm.controls['precoDia'].errors">
+                Campo Preco por Dia é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Preco por Km Extrapolado</mat-label>
+            <input matInput formControlName="precoKmExtrapolado" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="planoKmControladoForm.controls['precoKmExtrapolado'].errors">
+                Campo Preco por Km Extrapolado é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Km Disponiveis</mat-label>
+            <input matInput formControlName="kmDisponiveis" type="number">
+            <mat-icon matSuffix>event_available</mat-icon>
+            <mat-error *ngIf="planoKmControladoForm.controls['kmDisponiveis'].errors">
+                Campo Km Disponiveis é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    </form>
+    
+    <span>Plano Km Livre</span>
+    <hr>
+    
+    <form [formGroup]="planoKmLivreForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Preco por Dia</mat-label>
+            <input matInput formControlName="precoDia" type="number">
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="planoKmLivreForm.controls['precoDia'].errors">
+                Campo Preco por Dia é obrigatorio
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <button mat-flat-button color="primary" (click)="editarGrupoAutomovel()" [disabled]="enviando">
+            Editar
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-flat-button color="warn" (click)="voltarParaListar()">
+            <mat-icon>arrow_back</mat-icon>
+            Cancelar
+        </button>
+    </div>
+
+</ng-template>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>

@@ -6,6 +6,9 @@ import { CupomListarComponent } from './cupom/listar/cupom-listar.component';
 import { FuncionarioCriarComponent } from './funcionario/criar/funcionario-criar.component';
 import { FuncionarioEditarComponent } from './funcionario/editar/funcionario-editar.component';
 import { FuncionarioListarComponent } from './funcionario/listar/funcionario-listar.component';
+import { GrupoAutomovelCriarComponent } from './grupoAutomovel/criar/grupo-automovel-criar.component';
+import { GrupoAutomovelEditarComponent } from './grupoAutomovel/editar/grupo-automovel-editar.component';
+import { GrupoAutomovelListarComponent } from './grupoAutomovel/listar/grupo-automovel-listar.component';
 import { ParceiroCriarComponent } from './parceiro/criar/parceiro-criar.component';
 import { ParceiroEditarComponent } from './parceiro/editar/parceiro-editar.component';
 import { ParceiroListarComponent } from './parceiro/listar/parceiro-listar.component';
@@ -43,6 +46,10 @@ const routes: Routes = [
   {path: 'taxaEServico/listar', component: TaxaEServicoListarComponent},
   {path: 'taxaEServico/criar', component: TaxaEServicoCriarComponent},
   {path: 'taxaEServico/editar/:id', component: TaxaEServicoEditarComponent},
+  
+  {path: 'grupoAutomovel/listar', component: GrupoAutomovelListarComponent},
+  {path: 'grupoAutomovel/criar', component: GrupoAutomovelCriarComponent},
+  {path: 'grupoAutomovel/editar/:id', component: GrupoAutomovelEditarComponent},
 ];
 
 @NgModule({

@@ -54,7 +54,10 @@ import { PessoaFisicaEditarComponent } from './pessoaFisica/editar/pessoa-fisica
 import { TaxaEServicoListarComponent } from './taxaEServico/listar/taxa-e-servico-listar.component';
 import { PegarTipoTaxaPipe } from './taxaEServico/pipes/pegar-tipo.pipe';
 import { TaxaEServicoCriarComponent } from './taxaEServico/criar/taxa-e-servico-criar.component';
-import { TaxaEServicoEditarComponent } from './taxaEServico/editar/taxa-e-servico-editar.component'
+import { TaxaEServicoEditarComponent } from './taxaEServico/editar/taxa-e-servico-editar.component';
+import { GrupoAutomovelListarComponent } from './grupoAutomovel/listar/grupo-automovel-listar.component';
+import { GrupoAutomovelCriarComponent } from './grupoAutomovel/criar/grupo-automovel-criar.component';
+import { GrupoAutomovelEditarComponent } from './grupoAutomovel/editar/grupo-automovel-editar.component'
 
 registerLocaleData(ptBr);
 
@@ -82,7 +85,10 @@ registerLocaleData(ptBr);
     TaxaEServicoListarComponent,
     PegarTipoTaxaPipe,
     TaxaEServicoCriarComponent,
-    TaxaEServicoEditarComponent
+    TaxaEServicoEditarComponent,
+    GrupoAutomovelListarComponent,
+    GrupoAutomovelCriarComponent,
+    GrupoAutomovelEditarComponent
   ],
   imports: [
     BrowserModule,
