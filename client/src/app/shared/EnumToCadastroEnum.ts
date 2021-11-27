@@ -1,10 +1,10 @@
-export interface ICadastroEnum<T> {
+export type CadastroEnumType<T> = {
     tipos: T;
     chaves: any[];
 }
 
 export class EnumToCadastroEnum {
-    converter<T>(tempTipo: T): ICadastroEnum<T> {
+    converter<T>(tempTipo: T): CadastroEnumType<T> {
         const chaves = Object.keys(tempTipo).filter(t => !isNaN(Number(t)));
 
         return {

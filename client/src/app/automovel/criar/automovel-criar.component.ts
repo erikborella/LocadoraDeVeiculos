@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpGrupoAutomovelService } from 'src/app/grupoAutomovel/services/http-grupo-automovel.service';
-import { EnumToCadastroEnum, ICadastroEnum } from 'src/app/shared/EnumToCadastroEnum';
+import { EnumToCadastroEnum, CadastroEnumType } from 'src/app/shared/EnumToCadastroEnum';
 import { FormToastService } from 'src/app/shared/form-toast.service';
 import { AutomovelCreateViewModel } from 'src/app/shared/viewModels/automovel/AutomovelCreateViewModel';
 import { CambioEnum } from 'src/app/shared/viewModels/automovel/enums/CambioEnum';
