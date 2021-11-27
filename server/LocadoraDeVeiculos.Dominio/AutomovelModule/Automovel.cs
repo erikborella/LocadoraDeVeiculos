@@ -13,33 +13,35 @@ namespace LocadoraDeVeiculos.Dominio.AutomovelModule
 {
     public class Automovel : EntidadeBase, IEquatable<Automovel>
     {
-        public string Modelo { get; }
+        public string Modelo { get; set; }
 
-        public string Marca { get; }
+        public string Marca { get; set; }
 
-        public string Cor { get; }
+        public string Cor { get; set; }
 
-        public string Placa { get; }
+        public string Placa { get; set; }
 
-        public string Chassi { get; }
+        public string Chassi { get; set; }
 
-        public int Ano { get; }
+        public int Ano { get; set; }
 
-        public int Portas { get; }
+        public int Portas { get; set; }
 
-        public int CapacidadeTanque { get; }
+        public int CapacidadeTanque { get; set; }
 
-        public int TamanhoPortaMalas { get; }
+        public int TamanhoPortaMalas { get; set; }
 
         public int KmRegistrada { get; set; }
 
-        public TipoCombustivelEnum TipoCombustivel { get; }
+        public TipoCombustivelEnum TipoCombustivel { get; set; }
 
-        public CambioEnum Cambio { get; }
+        public CambioEnum Cambio { get; set; }
 
-        public DirecaoEnum Direcao { get; }
+        public DirecaoEnum Direcao { get; set; }
 
-        public virtual GrupoAutomovel Grupo { get; }
+        public int GrupoId { get; set; }
+
+        public virtual GrupoAutomovel Grupo { get; set; }
 
         public virtual List<Foto> Fotos { get; set; }
 
@@ -154,7 +156,7 @@ namespace LocadoraDeVeiculos.Dominio.AutomovelModule
                     QuebraDeLinha(resultadoValidacao) +
                     $"O tamanho do porta malas não pode ser 0 ou negativo";
 
-            if (Grupo == null)
+            if (Grupo == null && GrupoId == 0)
                 resultadoValidacao +=
                     QuebraDeLinha(resultadoValidacao) +
                     $"O Automovel obrigatoriamente precisa fazer parte de um Grupo";
