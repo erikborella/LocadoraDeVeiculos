@@ -57,7 +57,10 @@ import { TaxaEServicoCriarComponent } from './taxaEServico/criar/taxa-e-servico-
 import { TaxaEServicoEditarComponent } from './taxaEServico/editar/taxa-e-servico-editar.component';
 import { GrupoAutomovelListarComponent } from './grupoAutomovel/listar/grupo-automovel-listar.component';
 import { GrupoAutomovelCriarComponent } from './grupoAutomovel/criar/grupo-automovel-criar.component';
-import { GrupoAutomovelEditarComponent } from './grupoAutomovel/editar/grupo-automovel-editar.component'
+import { GrupoAutomovelEditarComponent } from './grupoAutomovel/editar/grupo-automovel-editar.component';
+import { AutomovelListarComponent } from './automovel/listar/automovel-listar.component';
+import { AutomovelCriarComponent } from './automovel/criar/automovel-criar.component';
+import { AutomovelEditarComponent } from './automovel/editar/automovel-editar.component'
 
 registerLocaleData(ptBr);
 
@@ -88,7 +91,10 @@ registerLocaleData(ptBr);
     TaxaEServicoEditarComponent,
     GrupoAutomovelListarComponent,
     GrupoAutomovelCriarComponent,
-    GrupoAutomovelEditarComponent
+    GrupoAutomovelEditarComponent,
+    AutomovelListarComponent,
+    AutomovelCriarComponent,
+    AutomovelEditarComponent
   ],
   imports: [
     BrowserModule,

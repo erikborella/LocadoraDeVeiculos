@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutomovelCriarComponent } from './automovel/criar/automovel-criar.component';
+import { AutomovelEditarComponent } from './automovel/editar/automovel-editar.component';
+import { AutomovelListarComponent } from './automovel/listar/automovel-listar.component';
 import { CupomCriarComponent } from './cupom/criar/cupom-criar.component';
 import { CupomEditarComponent } from './cupom/editar/cupom-editar.component';
 import { CupomListarComponent } from './cupom/listar/cupom-listar.component';
@@ -50,6 +53,10 @@ const routes: Routes = [
   {path: 'grupoAutomovel/listar', component: GrupoAutomovelListarComponent},
   {path: 'grupoAutomovel/criar', component: GrupoAutomovelCriarComponent},
   {path: 'grupoAutomovel/editar/:id', component: GrupoAutomovelEditarComponent},
+  
+  {path: 'automovel/listar', component: AutomovelListarComponent},
+  {path: 'automovel/criar', component: AutomovelCriarComponent},
+  {path: 'automovel/editar/:id', component: AutomovelEditarComponent},
 ];
 
 @NgModule({

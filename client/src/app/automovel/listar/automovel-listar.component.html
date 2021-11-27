@@ -1,0 +1,65 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Automoveis</h1>
+    <mat-icon class="header-icon">directions_car</mat-icon>
+</div>
+
+<br>
+
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-evenly center">
+    
+    <button mat-raised-button [routerLink]="['/automovel/criar']">
+        <mat-icon>add</mat-icon>
+        Criar
+    </button>
+
+    <button mat-raised-button [routerLink]="['/automovel/editar', idSelecionado]" [disabled]="!idSelecionado">
+        <mat-icon>edit</mat-icon>
+        Editar
+    </button>
+
+    <button mat-raised-button (click)="abrirDialogExclusao()" [disabled]="!idSelecionado" >
+        <mat-icon>delete</mat-icon>
+        Excluir
+    </button>
+
+</mat-toolbar>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="Modelo">
+        <th mat-header-cell *matHeaderCellDef>Modelo</th>
+        <td mat-cell *matCellDef="let automovel">{{ automovel.modelo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Placa">
+        <th mat-header-cell *matHeaderCellDef>Placa</th>
+        <td mat-cell *matCellDef="let automovel">{{ automovel.placa }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Km Registrada">
+        <th mat-header-cell *matHeaderCellDef>Km Registrada</th>
+        <td mat-cell *matCellDef="let automovel">{{ automovel.kmRegistrada }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Grupo">
+        <th mat-header-cell *matHeaderCellDef>Grupo</th>
+        <td mat-cell *matCellDef="let automovel">{{ automovel.grupoNome }}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+    <tr mat-row 
+        *matRowDef="let row; columns: colunas;" 
+        (click)="selecionarLinha(row)"
+        [class.row-is-clicked]="idSelecionado == row.id"></tr>
+
+</table>
+
+<div *ngIf="carregandoAutomoveis" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregando...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15]"
+             showFirstLastButtons
+             class="mat-elevation-z8">
+</mat-paginator>

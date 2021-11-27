@@ -1,0 +1,173 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h1>Criar Automovel</h1>
+</div>
+
+<div *ngIf="carregandoGrupos; else criarAutomovelForm" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Carregando dados...</h1>
+    <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #criarAutomovelForm>
+    <form [formGroup]="cadastroForm" fxLayout="column" fxLayoutAlign=" center">
+        <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['modelo'].errors">
+                Campo Modelo é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Marca</mat-label>
+            <input matInput formControlName="marca">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['marca'].errors">
+                Campo Marca é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cor</mat-label>
+            <input matInput formControlName="cor">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['cor'].errors">
+                Campo Cor é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="placa">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['placa'].errors">
+                Campo Placa é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Chassi</mat-label>
+            <input matInput formControlName="chassi">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['chassi'].errors">
+                Campo Chassi é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ano</mat-label>
+            <input matInput formControlName="ano" type="number">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['ano'].errors">
+                Campo Ano é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Portas</mat-label>
+            <input matInput formControlName="portas" type="number">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['portas'].errors">
+                Campo Portas é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Capacidade do Tanque</mat-label>
+            <input matInput formControlName="capacidadeTanque">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['capacidadeTanque'].errors">
+                Campo Capacidade do Tanque é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tamanho do Porta-malas</mat-label>
+            <input matInput formControlName="tamanhoPortaMalas">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['tamanhoPortaMalas'].errors">
+                Campo Tamanho do Porta-malas é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Km Registrada</mat-label>
+            <input matInput formControlName="kmRegistrada" type="number">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['kmRegistrada'].errors">
+                Campo Km Registrada é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Tipo do Combustivel</mat-label>
+            <mat-select formControlName="tipoCombustivel">
+                <mat-option *ngFor="let chave of tipoCombustiveis.chaves" [value]="chave">
+                    {{ tipoCombustiveis.tipos[chave] }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>groups</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['tipoCombustivel'].errors">
+                Campo Tipo do Combustivel é obrigatorio
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Tipo do Cambio</mat-label>
+            <mat-select formControlName="cambio">
+                <mat-option *ngFor="let chave of tipoCambios.chaves" [value]="chave">
+                    {{ tipoCambios.tipos[chave] }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>groups</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['cambio'].errors">
+                Campo Tipo do Cambio é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Tipo da Direção</mat-label>
+            <mat-select formControlName="direcao">
+                <mat-option *ngFor="let chave of tipoDirecoes.chaves" [value]="chave">
+                    {{ tipoDirecoes.tipos[chave] }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>groups</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['direcao'].errors">
+                Campo Tipo da Direção é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Grupo do Automovel</mat-label>
+            <mat-select formControlName="grupoId">
+                <mat-option *ngFor="let grupo of listaGrupos" [value]="grupo.id">
+                    {{ grupo.nome }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>groups</mat-icon>
+            <mat-error *ngIf="cadastroForm.controls['grupoId'].errors">
+                Campo Grupo do Automovel é obrigatorio
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</ng-template>
+
+<div fxLayout="row" fxLayoutAlign="space-evenly center" >
+    <button mat-flat-button color="primary" (click)="adicionarAutomovel()" [disabled]="enviando">
+        Registrar
+        <mat-icon>send</mat-icon>
+    </button>
+    <button mat-flat-button color="warn" (click)="voltarParaListar()">
+        <mat-icon>arrow_back</mat-icon>
+        Cancelar
+    </button>
+</div>
+
+<br>
+
+<div *ngIf="enviando" fxLayout="row" fxLayoutAlign="center center" >
+    <h1>Enviando...</h1>
+    <mat-spinner></mat-spinner>
+</div>
